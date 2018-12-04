@@ -65,7 +65,7 @@ namespace Lean.Touch
 		public static List<LeanSelectable> Instances = new List<LeanSelectable>();
 
 		[Tooltip("Should this get deselected when the selecting finger goes up?")]
-		public bool DeselectOnUp;
+		public bool DeselectOnUp = false;
 
 		[Tooltip("Should IsSelected temporarily return false if the selecting finger is still being held? This is useful when selecting multiple objects using a complex gesture (e.g. RTS style selection box)")]
 		public bool HideWithFinger;
@@ -116,15 +116,19 @@ namespace Lean.Touch
 			}
 		}
 
+		[HideInInspector]
 		// Called when selection begins (finger = the finger that selected this)
 		public LeanFingerEvent OnSelect;
 
+		[HideInInspector]	
 		// Called every frame this selectable is selected with a finger (finger = the finger that selected this)
 		public LeanFingerEvent OnSelectSet;
 
+		[HideInInspector]
 		// Called when the selecting finger goes up (finger = the finger that selected this)
 		public LeanFingerEvent OnSelectUp;
 
+		[HideInInspector]
 		// Called when this is deselected, if OnSelectUp hasn't been called yet, it will get called first
 		public UnityEvent OnDeselect;
 

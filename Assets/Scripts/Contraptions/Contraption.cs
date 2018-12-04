@@ -1,20 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Touch;
 
 public class Contraption : MonoBehaviour {
 
 	public ContraptionManager ContraptionManager;
 	public bool editing = true;
-
 	public bool isSelected = false;
+	// public Part selectedPart;
+	public List<Part> selectedParts;
 
-	public void Select() {
-		if (ContraptionManager) {
-			ContraptionManager.SelectContraption(this);
-			isSelected = true;
-		}		
+	public void Select(Part part) 
+	{
+		if (!selectedParts.Contains(part)) 
+			selectedParts.Add(part);
 	}
+
+	public void DeselectSelectedParts() 
+	{
+		foreach(Part part in selectedParts) 
+			part.Deselect();
+	}
+
+	public void SnapSelectedParts() 
+	{
+		foreach(Part part in selectedParts)
+			part.Snap();
+	}
+
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;

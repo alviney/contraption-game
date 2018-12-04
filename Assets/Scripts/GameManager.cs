@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
 	public void Awake() {
 		contraptionManager.Setup(numOfContraptions);
+
+		Time.timeScale = 0f;
 	}
 
 	public void Begin() {
@@ -17,7 +19,10 @@ public class GameManager : MonoBehaviour {
 		ReleaseContraptions();
 	}
 
-	public void ReleaseContraptions() {
+	public void ReleaseContraptions() 
+	{
 		contraptionManager.ReleaseContraptions();
+
+		Time.timeScale = 1f;
 	}
 }

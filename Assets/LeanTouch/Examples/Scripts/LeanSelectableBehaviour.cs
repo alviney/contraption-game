@@ -6,7 +6,7 @@ namespace Lean.Touch
 	public abstract class LeanSelectableBehaviour : MonoBehaviour
 	{
 		[System.NonSerialized]
-		private LeanSelectable selectable;
+		public LeanSelectable selectable;
 
 		public LeanSelectable Selectable
 		{

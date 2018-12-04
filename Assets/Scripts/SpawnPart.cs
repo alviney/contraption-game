@@ -7,9 +7,7 @@ namespace Lean.Touch
 	[RequireComponent(typeof(RectTransform))]
 	public class SpawnPart : MonoBehaviour
 	{
-
-		[Tooltip("The prefab that will spawn when dragging this UI element")]
-		public GameObject partPrefab;
+		public GameObject part;
 
 		[Tooltip("The camera used to calculate the spawn point (None = MainCamera)")]
 		public Camera Camera;
@@ -32,7 +30,7 @@ namespace Lean.Touch
 		public void OnFingerDown(LeanFinger finger)
 		{
 			// Does the prefab exist?
-			if (partPrefab != null)
+			if (part != null)
 			{
 				// Get the RaycastResults under this finger's current position
 				var results = LeanTouch.RaycastGui(finger.ScreenPosition);
@@ -42,18 +40,25 @@ namespace Lean.Touch
 					// Is this finger over this UI element?
 					if (results[0].gameObject == gameObject)
 					{
+
 						// Spawn prefab
-						var instance = Instantiate(partPrefab);
+						var partInstance = Instantiate(part);
 
 						// Position
-						instance.transform.position = ScreenDepth.Convert(finger.ScreenPosition, Camera, gameObject);
+						partInstance.transform.position = ScreenDepth.Convert(finger.ScreenPosition, Camera, gameObject);
 
 						Transform currentContraption = transform.parent.GetComponent<PartGenerator>().currentContraption;
 						
-						instance.transform.parent = currentContraption;
+						Contraption contraption = currentContraption.GetComponent<Contraption>();
+						
+						partInstance.transform.parent = currentContraption;
+
+						partInstance.GetComponent<Part>().contraption = contraption;
+
+						contraption.DeselectSelectedParts();
 
 						// Select
-						instance.GetComponent<LeanSelectable>().Select(finger);
+						partInstance.GetComponent<LeanSelectable>().Select(finger);
 					}
 				}
 			}

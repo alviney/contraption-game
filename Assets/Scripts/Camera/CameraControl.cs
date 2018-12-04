@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour {
 	public float zoomMin = 10;
 	public float zoomMax = 20;
-	private Camera camera;
+	private new Camera camera;
 	private ContraptionManager ContraptionManager;
 
 	private Vector3 startingPos;

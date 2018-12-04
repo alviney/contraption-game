@@ -7,12 +7,10 @@ public class ShowWhenEnabled : MonoBehaviour {
 	public GameObject objectToShow;
 
 	void OnEnable() {
-		Debug.Log("ENABLE");
 		objectToShow.SetActive(true);
 	}
 
 	void OnDisable() {
-		Debug.Log("DISABLE");
 		objectToShow.SetActive(false);
 	}
 }

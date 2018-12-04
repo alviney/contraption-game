@@ -53,7 +53,7 @@ public class ContraptionManager: MonoBehaviour {
 	}
 
 	public void EditContraption() {
-		Debug.Log("BEGIN EDITING");
+		Debug.Log("BEGIN EDITING CONTRAPTION");
 		currentContraption.StartEditing();
 	}
 
@@ -62,7 +62,7 @@ public class ContraptionManager: MonoBehaviour {
 	}
 
 	public void CancelEditing() {
-		Debug.Log("CANCEL EDITING");
+		Debug.Log("CANCEL EDITING CONTRAPTION");
 		// TODO - Reset GameObject to state before editing started.
 		currentContraption.StopEditing();
 	}

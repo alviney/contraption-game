@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a392186335bcb46b03ad7c78a5d078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editable: 1
+  ContraptionManager: {fileID: 0}
+  editing: 1
+  isSelected: 0
