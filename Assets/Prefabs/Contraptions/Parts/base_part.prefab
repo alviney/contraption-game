@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4885894576328902}
   - component: {fileID: 114443951270308564}
   - component: {fileID: 114212737119797306}
-  - component: {fileID: 114141427436651212}
   - component: {fileID: 8556955271627695309}
   - component: {fileID: 6023981488299687825}
   m_Layer: 0
@@ -88,20 +87,6 @@ MonoBehaviour:
   RequiredFingerCount: 0
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
---- !u!114 &114141427436651212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020683624695852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9da34796062c824b86d7e0c9e224cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 1
-  snap: 1
 --- !u!114 &8556955271627695309
 MonoBehaviour:
   m_ObjectHideFlags: 0

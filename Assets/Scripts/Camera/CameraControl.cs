@@ -6,7 +6,7 @@ public class CameraControl : MonoBehaviour {
 	public float zoomMin = 10;
 	public float zoomMax = 20;
 	private new Camera camera;
-	private ContraptionManager ContraptionManager;
+	private Factory_ContraptionBuilder ContraptionBuilder;
 
 	private Vector3 startingPos;
 
@@ -15,7 +15,7 @@ public class CameraControl : MonoBehaviour {
 
 		startingPos = transform.position;
 
-		ContraptionManager = GameObject.Find("CONTRAPTIONS").GetComponent<ContraptionManager>();
+		// ContraptionBuilder = GameObject.Find("CONTRAPTIONS").GetComponent<ContraptionBuilder>();
 
 		ZoomOut();
 	}
@@ -33,8 +33,8 @@ public class CameraControl : MonoBehaviour {
 	}
 
 	public void FocusOnCurrentContraption() {
-		Vector3 targetPos = ContraptionManager.GetCurrentContraption().transform.position;
-		transform.position = new Vector3(targetPos.x, targetPos.y, transform.position.z);
+		// Vector3 targetPos = ContraptionBuilder.GetCurrentContraption().transform.position;
+		// transform.position = new Vector3(targetPos.x, targetPos.y, transform.position.z);
 		ZoomIn();
 	}
 

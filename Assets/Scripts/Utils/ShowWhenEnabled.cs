@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ShowWhenEnabled : MonoBehaviour {
 
-	public GameObject objectToShow;
+	public GameObject[] objectsToShow;
 
 	void OnEnable() {
-		objectToShow.SetActive(true);
+		foreach(GameObject obj in objectsToShow)
+			obj.SetActive(true);
 	}
 
 	void OnDisable() {
-		objectToShow.SetActive(false);
+		foreach(GameObject obj in objectsToShow)
+			obj.SetActive(false);
 	}
 }

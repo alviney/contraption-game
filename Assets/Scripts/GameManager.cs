@@ -6,10 +6,10 @@ using Lean.Touch;
 public class GameManager : MonoBehaviour {
 
 	public int numOfContraptions;
-	public ContraptionManager contraptionManager;
+	// public ContraptionBuilder contraptionBuilder;
 
 	public void Awake() {
-		contraptionManager.Setup(numOfContraptions);
+		// contraptionBuilder.Setup(numOfContraptions);
 
 		Time.timeScale = 0f;
 	}
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 
 	public void ReleaseContraptions() 
 	{
-		contraptionManager.ReleaseContraptions();
+		// contraptionBuilder.ReleaseContraptions();
 
 		Time.timeScale = 1f;
 	}
