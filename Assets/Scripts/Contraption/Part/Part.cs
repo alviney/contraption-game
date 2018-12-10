@@ -5,31 +5,59 @@ using Lean.Touch;
 
 public class Part : LeanSelectable
 {
-  private void Awake()
-  {
-    OnSelect.AddListener(SelectDown);
-    OnSelectUp.AddListener(SelectUp);
-    OnDeselect.AddListener(Deselected);
-  }
+    private Color originalColor;
+    private Contraption contraption;
 
-  private void SelectDown(LeanFinger finger)
-  {
-    if (!PartsManager.instance.IsEditing())
+    private void Awake()
     {
-      this.Deselect();
-      ContraptionsManager.instance.SelectContraption(transform.parent.GetComponent<Contraption>());
+        OnSelect.AddListener(SelectDown);
+        OnSelectUp.AddListener(SelectUp);
+        OnDeselect.AddListener(Deselected);
+
+        originalColor = GetComponent<SpriteRenderer>().color;
     }
-    else
-      PartsManager.instance.Select(this);
-  }
 
-  private void SelectUp(LeanFinger finger)
-  {
-    PartsManager.instance.SnapSelectedParts();
-  }
+    public void SetContraption(Contraption contraption)
+    {
+        this.contraption = contraption;
+    }
+    private void SelectDown(LeanFinger finger)
+    {
+        if (PartsManager.instance.IsEditing())
+        {
+            PartsManager.instance.Select(this);
 
-  private void Deselected()
-  {
-    PartsManager.instance.DeselectPart(this);
-  }
+            ChangeColor(Color.green);
+        }
+        else
+        {
+            contraption.SelectParts();
+        }
+    }
+
+    private void SelectUp(LeanFinger finger)
+    {
+        if (PartsManager.instance.IsEditing())
+        {
+            PartsManager.instance.SnapSelectedParts();
+        }
+        else
+        {
+            contraption.SnapParts();
+        }
+    }
+
+    private void Deselected()
+    {
+        PartsManager.instance.DeselectPart(this);
+
+        ChangeColor(originalColor);
+    }
+
+    private void ChangeColor(Color color)
+    {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = color;
+    }
 }

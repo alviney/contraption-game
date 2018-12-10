@@ -48,7 +48,7 @@ namespace Lean.Touch
 
                         Contraption currentContraption = ContraptionsManager.instance.GetCurrentContraption();
 
-                        partInstance.transform.parent = currentContraption.transform;
+                        currentContraption.AddPart(partInstance.GetComponent<Part>());
 
                         PartsManager.instance.DeselectSelectedParts();
 

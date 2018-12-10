@@ -29,5 +29,4 @@ public class Factory_ContraptionOperations
         }
         transform.position = center;
     }
-
 }

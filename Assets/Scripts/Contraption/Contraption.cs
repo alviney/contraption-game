@@ -6,10 +6,13 @@ using Lean.Touch;
 public class Contraption : MonoBehaviour
 {
     private Factory_ContraptionOperations co;
+    public List<Part> parts;
+    private Factory_PartOperations po;
 
     private void Awake()
     {
         co = new Factory_ContraptionOperations();
+        po = new Factory_PartOperations();
     }
 
     void OnDrawGizmos()
@@ -20,5 +23,40 @@ public class Contraption : MonoBehaviour
         Gizmos.color = Color.blue;
         Vector2 center = co.GetCenter(transform);
         Gizmos.DrawSphere(new Vector3(center.x, center.y, 0), 1f);
+    }
+
+    public void AddPart(Part part)
+    {
+        parts.Add(part);
+
+        part.SetContraption(this);
+
+        part.transform.SetParent(transform);
+    }
+
+    public void RemovePart(Part part)
+    {
+        parts.Remove(part);
+    }
+
+    public void SnapParts()
+    {
+        foreach (Part part in parts)
+            po.Snap(part.transform);
+
+        DeselectParts();
+    }
+
+    public void SelectParts()
+    {
+        foreach (Part part in parts)
+            if (!part.isSelected)
+                part.Select();
+    }
+
+    private void DeselectParts()
+    {
+        foreach (Part part in parts)
+            part.Deselect();
     }
 }
