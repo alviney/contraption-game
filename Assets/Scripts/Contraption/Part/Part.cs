@@ -5,25 +5,59 @@ using Lean.Touch;
 
 public class Part : LeanSelectable
 {
+    private Color originalColor;
+    private Contraption contraption;
+
     private void Awake()
     {
         OnSelect.AddListener(SelectDown);
         OnSelectUp.AddListener(SelectUp);
         OnDeselect.AddListener(Deselected);
+
+        originalColor = GetComponent<SpriteRenderer>().color;
     }
 
+    public void SetContraption(Contraption contraption)
+    {
+        this.contraption = contraption;
+    }
     private void SelectDown(LeanFinger finger)
     {
-        PartsManager.instance.Select(this);
+        if (PartsManager.instance.IsEditing())
+        {
+            PartsManager.instance.Select(this);
+
+            ChangeColor(Color.green);
+        }
+        else
+        {
+            contraption.SelectParts();
+        }
     }
 
     private void SelectUp(LeanFinger finger)
     {
-        PartsManager.instance.SnapSelectedParts();
+        if (PartsManager.instance.IsEditing())
+        {
+            PartsManager.instance.SnapSelectedParts();
+        }
+        else
+        {
+            contraption.SnapParts();
+        }
     }
 
     private void Deselected()
     {
         PartsManager.instance.DeselectPart(this);
+
+        ChangeColor(originalColor);
+    }
+
+    private void ChangeColor(Color color)
+    {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = color;
     }
 }

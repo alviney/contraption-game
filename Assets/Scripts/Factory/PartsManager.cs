@@ -23,6 +23,7 @@ public class PartsManager : MonoBehaviour
 
     private void Start()
     {
+
         new Factory_PartGenerator(spawnersParent, partPrefabs, partSpawnerPrefab);
 
         po = new Factory_PartOperations();
@@ -36,6 +37,7 @@ public class PartsManager : MonoBehaviour
             po.FlipX(sr);
         }
     }
+
     public bool IsEditing()
     {
         return isEditing;
@@ -65,12 +67,7 @@ public class PartsManager : MonoBehaviour
 
     public void Select(Part part)
     {
-        if (!isEditing)
-        {
-            part.Deselect();
-            ContraptionsManager.instance.SelectContraption();
-        }
-        else if (!selectedParts.Contains(part))
+        if (!selectedParts.Contains(part))
             selectedParts.Add(part);
     }
 

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4885894576328902}
   - component: {fileID: 114443951270308564}
   - component: {fileID: 114212737119797306}
-  - component: {fileID: 8556955271627695309}
   - component: {fileID: 6023981488299687825}
   m_Layer: 0
   m_Name: base_part
@@ -87,21 +86,6 @@ MonoBehaviour:
   RequiredFingerCount: 0
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
---- !u!114 &8556955271627695309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020683624695852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a45146ec471801c4dbce44f8dd62608f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AutoGetDefaultColor: 0
-  DefaultColor: {r: 1, g: 1, b: 1, a: 1}
-  SelectedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!212 &6023981488299687825
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -53,11 +53,15 @@ public class ContraptionsManager : MonoBehaviour
     {
         // TODO - Reset GameObject to state before editing started.
         co.CenterParts(currentContraption.transform);
+
         PartsManager.instance.StopEditing();
     }
 
-    public void SelectContraption()
+    public void SelectContraption(Contraption contraption)
     {
+        if (currentContraption)
+            currentContraption.GetComponent<LeanSelectable>().Deselect();
+        currentContraption = contraption;
         currentContraption.GetComponent<LeanSelectable>().Select();
     }
 
