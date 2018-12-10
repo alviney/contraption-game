@@ -9,7 +9,7 @@ public class ContraptionsManager : MonoBehaviour
     public GameObject contraptionPrefab;
     public Transform contraptionSpawn;
     private List<Contraption> contraptions = new List<Contraption>();
-    private Contraption currentContraption;
+    public Contraption currentContraption;
     private Factory_ContraptionBuilder ContraptionBuilder;
     private Factory_ContraptionOperations co;
 
@@ -57,12 +57,9 @@ public class ContraptionsManager : MonoBehaviour
         PartsManager.instance.StopEditing();
     }
 
-    public void SelectContraption(Contraption contraption)
+    public void SetCurrentContraption(Contraption contraption)
     {
-        if (currentContraption)
-            currentContraption.GetComponent<LeanSelectable>().Deselect();
         currentContraption = contraption;
-        currentContraption.GetComponent<LeanSelectable>().Select();
     }
 
     public Contraption GetCurrentContraption()

@@ -47,7 +47,20 @@ public class Contraption : MonoBehaviour
         DeselectParts();
     }
 
-    public void SelectParts()
+    public void Select()
+    {
+        ContraptionsManager.instance.SetCurrentContraption(this);
+
+        GetComponent<LeanSelectable>().Select();
+        // SelectParts();
+    }
+
+    public void Deselect()
+    {
+        GetComponent<LeanSelectable>().Deselect();
+    }
+
+    private void SelectParts()
     {
         foreach (Part part in parts)
             if (!part.isSelected)

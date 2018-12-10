@@ -31,7 +31,8 @@ public class Part : LeanSelectable
         }
         else
         {
-            contraption.SelectParts();
+            contraption.Select();
+            Deselect();
         }
     }
 
@@ -43,7 +44,7 @@ public class Part : LeanSelectable
         }
         else
         {
-            contraption.SnapParts();
+            // contraption.Deselect();
         }
     }
 

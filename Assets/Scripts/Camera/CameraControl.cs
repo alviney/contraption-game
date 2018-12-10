@@ -2,43 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraControl : MonoBehaviour {
-	public float zoomMin = 10;
-	public float zoomMax = 20;
-	private new Camera camera;
-	private Factory_ContraptionBuilder ContraptionBuilder;
+public class CameraControl : MonoBehaviour
+{
+    public float zoomMin = 10;
+    public float zoomMax = 20;
+    private new Camera camera;
+    private Factory_ContraptionBuilder ContraptionBuilder;
 
-	private Vector3 startingPos;
+    private Vector3 startingPos;
 
-	private void Awake() {
-		camera = GetComponent<Camera>();
+    private void Awake()
+    {
+        camera = GetComponent<Camera>();
 
-		startingPos = transform.position;
+        startingPos = transform.position;
 
-		// ContraptionBuilder = GameObject.Find("CONTRAPTIONS").GetComponent<ContraptionBuilder>();
+        // ContraptionBuilder = GameObject.Find("CONTRAPTIONS").GetComponent<ContraptionBuilder>();
 
-		ZoomOut();
-	}
+        ZoomOut();
+    }
 
-	public void ZoomToggle() {
-		camera.orthographicSize = camera.orthographicSize == zoomMax ? zoomMin : zoomMax; 	
-	}
+    public void ZoomToggle()
+    {
+        camera.orthographicSize = camera.orthographicSize == zoomMax ? zoomMin : zoomMax;
+    }
 
-	public void ZoomIn() {
-		camera.orthographicSize = zoomMin;
-	}
+    public void ZoomIn()
+    {
+        camera.orthographicSize = zoomMin;
+    }
 
-	public void ZoomOut() {
-		camera.orthographicSize = zoomMax;
-	}
+    public void ZoomOut()
+    {
+        camera.orthographicSize = zoomMax;
+    }
 
-	public void FocusOnCurrentContraption() {
-		// Vector3 targetPos = ContraptionBuilder.GetCurrentContraption().transform.position;
-		// transform.position = new Vector3(targetPos.x, targetPos.y, transform.position.z);
-		ZoomIn();
-	}
+    public void FocusOnCurrentContraption()
+    {
+        Vector3 targetPos = ContraptionsManager.instance.GetCurrentContraption().transform.position;
+        transform.position = new Vector3(targetPos.x, targetPos.y, transform.position.z);
+        ZoomIn();
+    }
 
-	public void MoveToStartingPosition() {
-		transform.position = startingPos;
-	}
+    public void MoveToStartingPosition()
+    {
+        transform.position = startingPos;
+    }
 }
