@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8492107891267923156}
   - component: {fileID: 8492107891267923157}
   m_Layer: 0
-  m_Name: Contraption
+  m_Name: contraption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeselectOnUp: 0
+  DeselectOnUp: 1
   HideWithFinger: 0
   IsolateSelectingFingers: 0
   OnSelect:
