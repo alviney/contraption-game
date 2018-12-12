@@ -42,6 +42,8 @@ public class ContraptionsManager : MonoBehaviour
     public void EditContraption()
     {
         PartsManager.instance.StartEditing();
+
+        currentContraption.EnableParts();
     }
 
     public void FinishEditing()
@@ -53,6 +55,8 @@ public class ContraptionsManager : MonoBehaviour
     {
         // TODO - Reset GameObject to state before editing started.
         co.CenterParts(currentContraption.transform);
+
+        currentContraption.DisableParts();
 
         PartsManager.instance.StopEditing();
     }

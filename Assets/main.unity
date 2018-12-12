@@ -1534,6 +1534,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1777793981}
+        m_MethodName: EditContraption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &698769813
@@ -3117,6 +3128,7 @@ GameObject:
   - component: {fileID: 1777793979}
   - component: {fileID: 1777793981}
   - component: {fileID: 1777793980}
+  - component: {fileID: 1777793982}
   m_Layer: 0
   m_Name: FACTORY
   m_TagString: Untagged
@@ -3173,6 +3185,19 @@ MonoBehaviour:
   contraptionPrefab: {fileID: 8492107891267923178, guid: e9c2557a76a8eea49ae17b6bd1252f63,
     type: 3}
   contraptionSpawn: {fileID: 1279440260}
+  currentContraption: {fileID: 0}
+--- !u!114 &1777793982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777793978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ee33900f4e74462b6d9ee243b03bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1823818324
 GameObject:
   m_ObjectHideFlags: 0

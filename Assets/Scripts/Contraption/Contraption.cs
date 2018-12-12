@@ -57,7 +57,21 @@ public class Contraption : MonoBehaviour
 
     public void Deselect()
     {
+        po.Snap(transform);
+
         GetComponent<LeanSelectable>().Deselect();
+    }
+
+    public void DisableParts()
+    {
+        foreach (Part part in parts)
+            part.DisablePart();
+    }
+
+    public void EnableParts()
+    {
+        foreach (Part part in parts)
+            part.EnablePart();
     }
 
     private void SelectParts()

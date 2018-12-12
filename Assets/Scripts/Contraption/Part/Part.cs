@@ -17,6 +17,16 @@ public class Part : LeanSelectable
         originalColor = GetComponent<SpriteRenderer>().color;
     }
 
+    public void DisablePart()
+    {
+        GetComponent<LeanTranslate>().enabled = false;
+    }
+
+    public void EnablePart()
+    {
+        GetComponent<LeanTranslate>().enabled = true;
+    }
+
     public void SetContraption(Contraption contraption)
     {
         this.contraption = contraption;
@@ -32,7 +42,6 @@ public class Part : LeanSelectable
         else
         {
             contraption.Select();
-            Deselect();
         }
     }
 
@@ -44,7 +53,7 @@ public class Part : LeanSelectable
         }
         else
         {
-            // contraption.Deselect();
+            contraption.Deselect();
         }
     }
 
