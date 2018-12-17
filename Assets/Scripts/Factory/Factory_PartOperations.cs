@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Factory_PartOperations
 {
-    public void FlipX(SpriteRenderer sr)
+    public void FlipX(Transform transform)
     {
-
-        sr.flipX = !sr.flipX;
+        transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
     }
 
-    public void FlipY(SpriteRenderer sr)
+    public void FlipY(Transform transform)
     {
-        sr.flipY = !sr.flipY;
+        transform.localScale = new Vector3(1, transform.localScale.y * -1, 1);
     }
 
     public void Snap(Transform transform, float gridSize = 1f)

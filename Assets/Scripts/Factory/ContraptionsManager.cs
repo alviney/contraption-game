@@ -35,8 +35,6 @@ public class ContraptionsManager : MonoBehaviour
         contraptions.Add(currentContraption);
 
         FinishEditing();
-
-        PartsManager.instance.DeselectSelectedParts();
     }
 
     public void EditContraption()
@@ -48,22 +46,36 @@ public class ContraptionsManager : MonoBehaviour
 
     public void FinishEditing()
     {
-        CancelEditing();
-    }
-
-    public void CancelEditing()
-    {
         // TODO - Reset GameObject to state before editing started.
         co.CenterParts(currentContraption.transform);
 
         currentContraption.DisableParts();
 
         PartsManager.instance.StopEditing();
+
+    }
+
+    public void DeleteContraption()
+    {
+        contraptions.Remove(currentContraption);
+
+        CancelContraption();
+    }
+
+    public void CancelContraption()
+    {
+        if (!contraptions.Contains(currentContraption))
+            Destroy(currentContraption.gameObject);
     }
 
     public void SetCurrentContraption(Contraption contraption)
     {
         currentContraption = contraption;
+    }
+
+    public void AddGravity()
+    {
+        currentContraption.GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
     public Contraption GetCurrentContraption()

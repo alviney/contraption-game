@@ -43,8 +43,6 @@ public class Contraption : MonoBehaviour
     {
         foreach (Part part in parts)
             po.Snap(part.transform);
-
-        DeselectParts();
     }
 
     public void Select()
@@ -52,7 +50,6 @@ public class Contraption : MonoBehaviour
         ContraptionsManager.instance.SetCurrentContraption(this);
 
         GetComponent<LeanSelectable>().Select();
-        // SelectParts();
     }
 
     public void Deselect()
@@ -65,25 +62,21 @@ public class Contraption : MonoBehaviour
     public void DisableParts()
     {
         foreach (Part part in parts)
+        {
             part.DisablePart();
+
+            part.Deselect();
+        }
     }
 
     public void EnableParts()
     {
         foreach (Part part in parts)
+        {
             part.EnablePart();
-    }
 
-    private void SelectParts()
-    {
-        foreach (Part part in parts)
-            if (!part.isSelected)
-                part.Select();
-    }
-
-    private void DeselectParts()
-    {
-        foreach (Part part in parts)
             part.Deselect();
+        }
     }
+
 }

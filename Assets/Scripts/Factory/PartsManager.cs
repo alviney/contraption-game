@@ -33,8 +33,7 @@ public class PartsManager : MonoBehaviour
     {
         foreach (Part part in selectedParts)
         {
-            SpriteRenderer sr = part.GetComponent<SpriteRenderer>();
-            po.FlipX(sr);
+            po.FlipX(part.transform);
         }
     }
 
@@ -46,11 +45,15 @@ public class PartsManager : MonoBehaviour
     public void StartEditing()
     {
         isEditing = true;
+
+        DeselectSelectedParts();
     }
 
     public void StopEditing()
     {
         isEditing = false;
+
+        DeselectSelectedParts();
     }
 
     public void SnapSelectedParts()
