@@ -27,31 +27,31 @@ public class ContraptionsManager : MonoBehaviour
     public void CreateContration()
     {
         currentContraption = ContraptionBuilder.Create(contraptions.Count);
-        EditContraption();
+        StartEdit();
     }
 
     public void BuildContraption()
     {
         contraptions.Add(currentContraption);
 
-        FinishEditing();
+        StopEdit();
     }
 
-    public void EditContraption()
+    public void StartEdit()
     {
-        PartsManager.instance.StartEditing();
+        PartsManager.instance.StartEdit();
 
         currentContraption.EnableParts();
     }
 
-    public void FinishEditing()
+    public void StopEdit()
     {
+        PartsManager.instance.StopEdit();
+
         // TODO - Reset GameObject to state before editing started.
         co.CenterParts(currentContraption.transform);
 
         currentContraption.DisableParts();
-
-        PartsManager.instance.StopEditing();
 
     }
 

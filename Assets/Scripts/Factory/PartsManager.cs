@@ -42,14 +42,14 @@ public class PartsManager : MonoBehaviour
         return isEditing;
     }
 
-    public void StartEditing()
+    public void StartEdit()
     {
         isEditing = true;
 
         DeselectSelectedParts();
     }
 
-    public void StopEditing()
+    public void StopEdit()
     {
         isEditing = false;
 
