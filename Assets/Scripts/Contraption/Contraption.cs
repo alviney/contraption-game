@@ -62,21 +62,15 @@ public class Contraption : MonoBehaviour
     public void DisableParts()
     {
         foreach (Part part in parts)
-        {
             part.DisablePart();
 
-            part.Deselect();
-        }
     }
 
     public void EnableParts()
     {
         foreach (Part part in parts)
-        {
             part.EnablePart();
 
-            part.Deselect();
-        }
     }
 
 }

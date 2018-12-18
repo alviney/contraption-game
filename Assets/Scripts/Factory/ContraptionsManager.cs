@@ -21,12 +21,19 @@ public class ContraptionsManager : MonoBehaviour
             Destroy(gameObject);
 
         ContraptionBuilder = new Factory_ContraptionBuilder(contraptionPrefab, contraptionSpawn);
+
         co = new Factory_ContraptionOperations();
     }
 
     public void CreateContration()
     {
         currentContraption = ContraptionBuilder.Create(contraptions.Count);
+
+        StartEdit();
+    }
+
+    public void EditContraption()
+    {
         StartEdit();
     }
 
@@ -39,20 +46,25 @@ public class ContraptionsManager : MonoBehaviour
 
     public void StartEdit()
     {
-        PartsManager.instance.StartEdit();
+        if (PartsManager.instance)
+            PartsManager.instance.StartEdit();
 
-        currentContraption.EnableParts();
+        if (currentContraption)
+            currentContraption.EnableParts();
     }
 
     public void StopEdit()
     {
-        PartsManager.instance.StopEdit();
+        if (PartsManager.instance)
+            PartsManager.instance.StopEdit();
 
-        // TODO - Reset GameObject to state before editing started.
-        co.CenterParts(currentContraption.transform);
+        if (currentContraption)
+        {
+            // TODO - Reset GameObject to state before editing started.
+            co.CenterParts(currentContraption.transform);
 
-        currentContraption.DisableParts();
-
+            currentContraption.DisableParts();
+        }
     }
 
     public void DeleteContraption()
@@ -66,6 +78,8 @@ public class ContraptionsManager : MonoBehaviour
     {
         if (!contraptions.Contains(currentContraption))
             Destroy(currentContraption.gameObject);
+
+        StopEdit();
     }
 
     public void SetCurrentContraption(Contraption contraption)

@@ -45,15 +45,13 @@ public class PartsManager : MonoBehaviour
     public void StartEdit()
     {
         isEditing = true;
-
-        DeselectSelectedParts();
     }
 
     public void StopEdit()
     {
         isEditing = false;
 
-        DeselectSelectedParts();
+        ClearSelectedParts();
     }
 
     public void SnapSelectedParts()
@@ -68,10 +66,18 @@ public class PartsManager : MonoBehaviour
         return selectedParts;
     }
 
-    public void Select(Part part)
+    public void AddToSelectedParts(Part part)
     {
         if (!selectedParts.Contains(part))
             selectedParts.Add(part);
+    }
+
+    public void ClearSelectedParts()
+    {
+        foreach (Part part in selectedParts)
+            part.ClearSelection();
+
+        selectedParts.Clear();
     }
 
     public void DeselectSelectedParts()

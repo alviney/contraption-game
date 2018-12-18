@@ -5,6 +5,7 @@ using Lean.Touch;
 
 public class Part : LeanSelectable
 {
+    public new string name;
     private Color originalColor;
     private Contraption contraption;
 
@@ -12,7 +13,6 @@ public class Part : LeanSelectable
     {
         OnSelect.AddListener(SelectDown);
         OnSelectUp.AddListener(SelectUp);
-        OnDeselect.AddListener(Deselected);
 
         originalColor = GetComponent<SpriteRenderer>().color;
     }
@@ -31,11 +31,14 @@ public class Part : LeanSelectable
     {
         this.contraption = contraption;
     }
+
     private void SelectDown(LeanFinger finger)
     {
         if (PartsManager.instance.IsEditing())
         {
-            PartsManager.instance.Select(this);
+            PartsManager.instance.ClearSelectedParts();
+
+            PartsManager.instance.AddToSelectedParts(this);
 
             ChangeColor(Color.green);
         }
@@ -57,10 +60,8 @@ public class Part : LeanSelectable
         }
     }
 
-    private void Deselected()
+    public void ClearSelection()
     {
-        PartsManager.instance.DeselectPart(this);
-
         ChangeColor(originalColor);
     }
 

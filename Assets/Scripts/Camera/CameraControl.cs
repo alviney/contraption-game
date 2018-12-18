@@ -17,8 +17,6 @@ public class CameraControl : MonoBehaviour
 
         startingPos = transform.position;
 
-        // ContraptionBuilder = GameObject.Find("CONTRAPTIONS").GetComponent<ContraptionBuilder>();
-
         ZoomOut();
     }
 
