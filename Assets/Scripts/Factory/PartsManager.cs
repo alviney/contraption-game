@@ -33,8 +33,7 @@ public class PartsManager : MonoBehaviour
     {
         foreach (Part part in selectedParts)
         {
-            SpriteRenderer sr = part.GetComponent<SpriteRenderer>();
-            po.FlipX(sr);
+            po.FlipX(part.transform);
         }
     }
 
@@ -43,14 +42,16 @@ public class PartsManager : MonoBehaviour
         return isEditing;
     }
 
-    public void StartEditing()
+    public void StartEdit()
     {
         isEditing = true;
     }
 
-    public void StopEditing()
+    public void StopEdit()
     {
         isEditing = false;
+
+        ClearSelectedParts();
     }
 
     public void SnapSelectedParts()
@@ -65,10 +66,18 @@ public class PartsManager : MonoBehaviour
         return selectedParts;
     }
 
-    public void Select(Part part)
+    public void AddToSelectedParts(Part part)
     {
         if (!selectedParts.Contains(part))
             selectedParts.Add(part);
+    }
+
+    public void ClearSelectedParts()
+    {
+        foreach (Part part in selectedParts)
+            part.ClearSelection();
+
+        selectedParts.Clear();
     }
 
     public void DeselectSelectedParts()

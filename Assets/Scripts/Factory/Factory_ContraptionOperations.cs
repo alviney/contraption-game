@@ -25,7 +25,7 @@ public class Factory_ContraptionOperations
         Vector2 offset = new Vector2(transform.position.x, transform.position.y) - center;
         foreach (Transform part in transform)
         {
-            part.position += new Vector3(offset.x, offset.y, 0);
+            part.position += new Vector3(Mathf.Round(offset.x), Mathf.Round(offset.y), 0);
         }
         transform.position = center;
     }

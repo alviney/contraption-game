@@ -9,7 +9,7 @@ public class ContraptionsManager : MonoBehaviour
     public GameObject contraptionPrefab;
     public Transform contraptionSpawn;
     private List<Contraption> contraptions = new List<Contraption>();
-    private Contraption currentContraption;
+    public Contraption currentContraption;
     private Factory_ContraptionBuilder ContraptionBuilder;
     private Factory_ContraptionOperations co;
 
@@ -21,48 +21,80 @@ public class ContraptionsManager : MonoBehaviour
             Destroy(gameObject);
 
         ContraptionBuilder = new Factory_ContraptionBuilder(contraptionPrefab, contraptionSpawn);
+
         co = new Factory_ContraptionOperations();
     }
 
     public void CreateContration()
     {
         currentContraption = ContraptionBuilder.Create(contraptions.Count);
-        EditContraption();
+
+        StartEdit();
+    }
+
+    public void EditContraption()
+    {
+        StartEdit();
     }
 
     public void BuildContraption()
     {
         contraptions.Add(currentContraption);
 
-        FinishEditing();
-
-        PartsManager.instance.DeselectSelectedParts();
+        StopEdit();
     }
 
-    public void EditContraption()
+    public void StartEdit()
     {
-        PartsManager.instance.StartEditing();
-    }
+        if (PartsManager.instance)
+            PartsManager.instance.StartEdit();
 
-    public void FinishEditing()
-    {
-        CancelEditing();
-    }
-
-    public void CancelEditing()
-    {
-        // TODO - Reset GameObject to state before editing started.
-        co.CenterParts(currentContraption.transform);
-
-        PartsManager.instance.StopEditing();
-    }
-
-    public void SelectContraption(Contraption contraption)
-    {
         if (currentContraption)
-            currentContraption.GetComponent<LeanSelectable>().Deselect();
+            currentContraption.EnableParts();
+    }
+
+    public void StopEdit()
+    {
+        if (PartsManager.instance)
+            PartsManager.instance.StopEdit();
+
+        if (currentContraption)
+        {
+            // TODO - Reset GameObject to state before editing started.
+            co.CenterParts(currentContraption.transform);
+
+            currentContraption.DisableParts();
+        }
+    }
+
+    public void DeleteContraption()
+    {
+        contraptions.Remove(currentContraption);
+
+        CancelContraption();
+    }
+
+    public void CancelContraption()
+    {
+        if (!contraptions.Contains(currentContraption))
+            Destroy(currentContraption.gameObject);
+
+        StopEdit();
+    }
+
+    public void SetCurrentContraption(Contraption contraption)
+    {
         currentContraption = contraption;
-        currentContraption.GetComponent<LeanSelectable>().Select();
+    }
+
+    public void AddGravity()
+    {
+        currentContraption.GetComponent<Rigidbody2D>().gravityScale = 1;
+    }
+
+    public void SetMaterial(string material)
+    {
+        currentContraption.material = material;
     }
 
     public Contraption GetCurrentContraption()

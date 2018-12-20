@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Lean.Touch;
 public class Factory_PartGenerator
 {
@@ -24,6 +25,8 @@ public class Factory_PartGenerator
             GameObject instance = MonoBehaviour.Instantiate(partSpawnerPrefab);
 
             Factory_SpawnPart spawner = instance.GetComponent<Factory_SpawnPart>();
+
+            instance.GetComponentInChildren<Text>().text = partPrefab.name;
 
             spawner.partPrefab = partPrefab;
 

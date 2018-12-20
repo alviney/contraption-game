@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!60 &5886328909221212116
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789570890451622657}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5, y: 0.5}
+      - {x: -0.5, y: -0.5}
+      - {x: 0.5, y: -0.5}
 --- !u!212 &5665189412953252783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48,34 +76,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &5886328909221212116
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7789570890451622657}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
 --- !u!1001 &7789465088845894445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,7 +85,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7789570890451622657}
       propertyPath: m_Name
-      value: ramp
+      value: ramp_variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894576021886728697}
+      propertyPath: name
+      value: Ramp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784725443274769387}
+      propertyPath: m_LocalPosition.x
+      value: 1.4381112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784725443274769387}
+      propertyPath: m_LocalPosition.y
+      value: -9.962198
       objectReference: {fileID: 0}
     - target: {fileID: 7784725443274769387}
       propertyPath: m_LocalPosition.x
@@ -131,9 +143,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1020683624695852, guid: c88a979e6f5afb74f95312aa8a9f021e, type: 3}
+    - target: {fileID: 7789570890451622657}
       propertyPath: m_Name
       value: ramp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020683624695852, guid: c88a979e6f5afb74f95312aa8a9f021e, type: 3}
+      propertyPath: m_Name
+      value: ramp_variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443951270308564, guid: c88a979e6f5afb74f95312aa8a9f021e,
+        type: 3}
+      propertyPath: name
+      value: Ramp
       objectReference: {fileID: 0}
     - target: {fileID: 4885894576328902, guid: c88a979e6f5afb74f95312aa8a9f021e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -157,3 +178,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7789465088845894445}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7894576021886728697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114443951270308564, guid: c88a979e6f5afb74f95312aa8a9f021e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7789465088845894445}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789570890451622657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24a0302181f2274295904d91e7abbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

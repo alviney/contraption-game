@@ -5,6 +5,7 @@ using Lean.Touch;
 
 public class Contraption : MonoBehaviour
 {
+    public string material;
     private Factory_ContraptionOperations co;
     public List<Part> parts;
     private Factory_PartOperations po;
@@ -43,20 +44,34 @@ public class Contraption : MonoBehaviour
     {
         foreach (Part part in parts)
             po.Snap(part.transform);
-
-        DeselectParts();
     }
 
-    public void SelectParts()
+    public void Select()
+    {
+        ContraptionsManager.instance.SetCurrentContraption(this);
+
+        GetComponent<LeanSelectable>().Select();
+    }
+
+    public void Deselect()
+    {
+        po.Snap(transform);
+
+        GetComponent<LeanSelectable>().Deselect();
+    }
+
+    public void DisableParts()
     {
         foreach (Part part in parts)
-            if (!part.isSelected)
-                part.Select();
+            part.DisablePart();
+
     }
 
-    private void DeselectParts()
+    public void EnableParts()
     {
         foreach (Part part in parts)
-            part.Deselect();
+            part.EnablePart();
+
     }
+
 }
