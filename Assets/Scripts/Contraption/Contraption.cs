@@ -5,19 +5,26 @@ using Lean.Touch;
 
 public class Contraption : MonoBehaviour
 {
+    public bool hideCenterGizmos = false;
     public string material;
     private Factory_ContraptionOperations co;
     public List<Part> parts;
     private Factory_PartOperations po;
+    private NeighbourCheck nc;
+    List<Part> neighbours;
 
     private void Awake()
     {
         co = new Factory_ContraptionOperations();
         po = new Factory_PartOperations();
+        nc = new NeighbourCheck();
     }
 
     void OnDrawGizmos()
     {
+        if (hideCenterGizmos)
+            return;
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, 1);
 
@@ -71,7 +78,24 @@ public class Contraption : MonoBehaviour
     {
         foreach (Part part in parts)
             part.EnablePart();
+    }
 
+    public void ClearParts()
+    {
+        foreach (Part part in parts)
+            part.ClearSelection();
+    }
+
+    public void CheckForNeighbours(Part part)
+    {
+        ClearParts();
+
+        neighbours = nc.GetNeighbours(parts, part);
+
+        foreach (Part neighbour in neighbours)
+        {
+            neighbour.ChangeColor(Color.blue);
+        }
     }
 
 }
