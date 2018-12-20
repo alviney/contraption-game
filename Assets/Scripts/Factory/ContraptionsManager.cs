@@ -92,6 +92,11 @@ public class ContraptionsManager : MonoBehaviour
         currentContraption.GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
+    public void SetMaterial(string material)
+    {
+        currentContraption.material = material;
+    }
+
     public Contraption GetCurrentContraption()
     {
         return currentContraption;

@@ -5,6 +5,7 @@ using Lean.Touch;
 
 public class Contraption : MonoBehaviour
 {
+    public string material;
     private Factory_ContraptionOperations co;
     public List<Part> parts;
     private Factory_PartOperations po;
