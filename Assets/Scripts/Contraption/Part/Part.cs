@@ -53,6 +53,8 @@ public class Part : LeanSelectable
         if (PartsManager.instance.IsEditing())
         {
             PartsManager.instance.SnapSelectedParts();
+
+            contraption.CheckForNeighbours(this);
         }
         else
         {
@@ -65,7 +67,7 @@ public class Part : LeanSelectable
         ChangeColor(originalColor);
     }
 
-    private void ChangeColor(Color color)
+    public void ChangeColor(Color color)
     {
         var spriteRenderer = GetComponent<SpriteRenderer>();
 

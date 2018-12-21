@@ -26,4 +26,47 @@ public class Factory_PartOperations
 
         transform.position = new Vector3(x, y, transform.position.z);
     }
+
+    public void AddJoint(Part part, Part attached)
+    {
+        switch (part.name)
+        {
+            case "Box":
+                AddHinge(part, attached);
+                break;
+
+            case "Ramp":
+                AddHinge(part, attached);
+                break;
+
+            case "Wheel":
+                AddWheel(part, attached);
+                break;
+        }
+    }
+
+    private void AddHinge(Part part, Part attached)
+    {
+        HingeJoint2D hinge = part.gameObject.AddComponent<HingeJoint2D>();
+        hinge.connectedBody = attached.GetComponent<Rigidbody2D>();
+        JointAngleLimits2D limits = hinge.limits;
+        limits.min = 0;
+        limits.max = 0;
+        hinge.limits = limits;
+        hinge.useLimits = true;
+    }
+
+    private void AddWheel(Part part, Part attached)
+    {
+        WheelJoint2D wheel = part.gameObject.AddComponent<WheelJoint2D>();
+        wheel.connectedBody = attached.GetComponent<Rigidbody2D>();
+
+        Vector2 connectedAnchor = wheel.connectedAnchor;
+        connectedAnchor.y = -1;
+        wheel.connectedAnchor = connectedAnchor;
+
+        JointSuspension2D suspension = wheel.suspension;
+        suspension.frequency = 40;
+        wheel.suspension = suspension;
+    }
 }

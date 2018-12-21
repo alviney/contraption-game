@@ -5,19 +5,25 @@ using Lean.Touch;
 
 public class Contraption : MonoBehaviour
 {
+    public bool hideCenterGizmos = false;
     public string material;
     private Factory_ContraptionOperations co;
     public List<Part> parts;
     private Factory_PartOperations po;
+    private NeighbourCheck nc;
 
     private void Awake()
     {
         co = new Factory_ContraptionOperations();
         po = new Factory_PartOperations();
+        nc = new NeighbourCheck();
     }
 
     void OnDrawGizmos()
     {
+        if (hideCenterGizmos)
+            return;
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, 1);
 
@@ -38,6 +44,10 @@ public class Contraption : MonoBehaviour
     public void RemovePart(Part part)
     {
         parts.Remove(part);
+
+        PartsManager.instance.ClearSelectedParts();
+
+        Destroy(part.gameObject);
     }
 
     public void SnapParts()
@@ -71,7 +81,42 @@ public class Contraption : MonoBehaviour
     {
         foreach (Part part in parts)
             part.EnablePart();
+    }
 
+    public void ClearParts()
+    {
+        foreach (Part part in parts)
+            part.ClearSelection();
+    }
+
+    public void CheckForNeighbours(Part part)
+    {
+        ClearParts();
+
+        List<Part> neighbours = nc.GetNeighbours(parts, part);
+
+        foreach (Part neighbour in neighbours)
+        {
+            neighbour.ChangeColor(Color.blue);
+        }
+
+        if (neighbours.Count > 0)
+        {
+            po.AddJoint(part, neighbours[0]);
+        }
+        else if (parts.Count != 1)
+        {
+            RemovePart(part);
+        }
+    }
+
+    public void ToggleGravity()
+    {
+        foreach (Part part in parts)
+        {
+            RigidbodyType2D bodyType = part.GetComponent<Rigidbody2D>().bodyType;
+            part.GetComponent<Rigidbody2D>().bodyType = bodyType == RigidbodyType2D.Kinematic ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+        }
     }
 
 }
