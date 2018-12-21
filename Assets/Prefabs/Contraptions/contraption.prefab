@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8492107891267923158}
   - component: {fileID: 8492107891267923159}
-  - component: {fileID: 5592851525672169013}
   - component: {fileID: 2114236603915220438}
   - component: {fileID: 5189931934802247823}
   m_Layer: 0
@@ -46,28 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a392186335bcb46b03ad7c78a5d078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideCenterGizmos: 0
+  material: 
   parts: []
---- !u!50 &5592851525672169013
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8492107891267923178}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &2114236603915220438
 MonoBehaviour:
   m_ObjectHideFlags: 0

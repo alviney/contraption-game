@@ -110,4 +110,13 @@ public class Contraption : MonoBehaviour
         }
     }
 
+    public void ToggleGravity()
+    {
+        foreach (Part part in parts)
+        {
+            RigidbodyType2D bodyType = part.GetComponent<Rigidbody2D>().bodyType;
+            part.GetComponent<Rigidbody2D>().bodyType = bodyType == RigidbodyType2D.Kinematic ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+        }
+    }
+
 }

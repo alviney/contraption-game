@@ -29,7 +29,20 @@ public class Factory_PartOperations
 
     public void AddJoint(Part part, Part attached)
     {
-        AddHinge(part, attached);
+        switch (part.name)
+        {
+            case "Box":
+                AddHinge(part, attached);
+                break;
+
+            case "Ramp":
+                AddHinge(part, attached);
+                break;
+
+            case "Wheel":
+                AddWheel(part, attached);
+                break;
+        }
     }
 
     private void AddHinge(Part part, Part attached)
@@ -41,5 +54,19 @@ public class Factory_PartOperations
         limits.max = 0;
         hinge.limits = limits;
         hinge.useLimits = true;
+    }
+
+    private void AddWheel(Part part, Part attached)
+    {
+        WheelJoint2D wheel = part.gameObject.AddComponent<WheelJoint2D>();
+        wheel.connectedBody = attached.GetComponent<Rigidbody2D>();
+
+        Vector2 connectedAnchor = wheel.connectedAnchor;
+        connectedAnchor.y = -1;
+        wheel.connectedAnchor = connectedAnchor;
+
+        JointSuspension2D suspension = wheel.suspension;
+        suspension.frequency = 40;
+        wheel.suspension = suspension;
     }
 }
