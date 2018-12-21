@@ -26,4 +26,20 @@ public class Factory_PartOperations
 
         transform.position = new Vector3(x, y, transform.position.z);
     }
+
+    public void AddJoint(Part part, Part attached)
+    {
+        AddHinge(part, attached);
+    }
+
+    private void AddHinge(Part part, Part attached)
+    {
+        HingeJoint2D hinge = part.gameObject.AddComponent<HingeJoint2D>();
+        hinge.connectedBody = attached.GetComponent<Rigidbody2D>();
+        JointAngleLimits2D limits = hinge.limits;
+        limits.min = 0;
+        limits.max = 0;
+        hinge.limits = limits;
+        hinge.useLimits = true;
+    }
 }

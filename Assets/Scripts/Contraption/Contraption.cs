@@ -11,7 +11,6 @@ public class Contraption : MonoBehaviour
     public List<Part> parts;
     private Factory_PartOperations po;
     private NeighbourCheck nc;
-    List<Part> neighbours;
 
     private void Awake()
     {
@@ -45,6 +44,10 @@ public class Contraption : MonoBehaviour
     public void RemovePart(Part part)
     {
         parts.Remove(part);
+
+        PartsManager.instance.ClearSelectedParts();
+
+        Destroy(part.gameObject);
     }
 
     public void SnapParts()
@@ -90,11 +93,20 @@ public class Contraption : MonoBehaviour
     {
         ClearParts();
 
-        neighbours = nc.GetNeighbours(parts, part);
+        List<Part> neighbours = nc.GetNeighbours(parts, part);
 
         foreach (Part neighbour in neighbours)
         {
             neighbour.ChangeColor(Color.blue);
+        }
+
+        if (neighbours.Count > 0)
+        {
+            po.AddJoint(part, neighbours[0]);
+        }
+        else if (parts.Count != 1)
+        {
+            RemovePart(part);
         }
     }
 

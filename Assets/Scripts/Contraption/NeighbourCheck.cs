@@ -19,7 +19,7 @@ public class NeighbourCheck
         foreach (Part part in parts)
         {
             if (part == partToCheck)
-                break;
+                continue;
 
             Vector3 p = part.transform.position;
 
