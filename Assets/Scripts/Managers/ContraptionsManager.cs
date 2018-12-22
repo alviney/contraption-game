@@ -39,7 +39,28 @@ public class ContraptionsManager : MonoBehaviour
 
     public void BuildContraption()
     {
+        if (!currentContraption.IsReadyToBuild)
+        {
+            CancelContraption();
+            return;
+        }
+
         contraptions.Add(currentContraption);
+
+        currentContraption.AddJoints();
+
+        StopEdit();
+    }
+
+    public void RebuildContraption()
+    {
+        if (!currentContraption.IsReadyToBuild)
+        {
+            CancelContraption();
+            return;
+        }
+
+        currentContraption.RemoveJoints();
 
         currentContraption.AddJoints();
 

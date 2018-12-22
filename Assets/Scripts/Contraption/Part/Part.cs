@@ -80,6 +80,9 @@ public class Part : LeanSelectable
 
     private void Deselect()
     {
+        if (!PartsManager.instance.IsEditing())
+            return;
+
         ClearSelection();
         if (contraption.GetSelectedPart() == this)
         {
