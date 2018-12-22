@@ -50,7 +50,7 @@ namespace Lean.Touch
 
                         currentContraption.AddPart(partInstance.GetComponent<Part>());
 
-                        PartsManager.instance.DeselectSelectedParts();
+                        LeanSelectable.DeselectAll();
 
                         // Select
                         partInstance.GetComponent<LeanSelectable>().Select(finger);

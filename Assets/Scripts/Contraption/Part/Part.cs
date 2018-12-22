@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Lean.Touch;
 
+public struct PartAttrs
+{
+    public bool isNeighbour;
+    public bool isSelected;
+}
 public class Part : LeanSelectable
 {
     public new string name;
+    public PartAttrs attrs;
     private Color originalColor;
     private Contraption contraption;
 
@@ -13,8 +19,12 @@ public class Part : LeanSelectable
     {
         OnSelect.AddListener(SelectDown);
         OnSelectUp.AddListener(SelectUp);
+        OnDeselect.AddListener(Deselect);
 
         originalColor = GetComponent<SpriteRenderer>().color;
+
+        attrs.isNeighbour = false;
+        attrs.isSelected = false;
     }
 
     public void DisablePart()
@@ -36,11 +46,16 @@ public class Part : LeanSelectable
     {
         if (PartsManager.instance.IsEditing())
         {
-            PartsManager.instance.ClearSelectedParts();
+            bool isDragging = PartsManager.instance.GetIsDragging();
 
-            PartsManager.instance.AddToSelectedParts(this);
+            DeselectOnUp = !isDragging;
 
-            ChangeColor(Color.green);
+            if (!isDragging)
+                contraption.ClearParts();
+
+            contraption.SetSelectedPart(this);
+
+            ApplyColor();
         }
         else
         {
@@ -52,9 +67,10 @@ public class Part : LeanSelectable
     {
         if (PartsManager.instance.IsEditing())
         {
-            PartsManager.instance.SnapSelectedParts();
+            contraption.SnapParts();
 
-            contraption.CheckForNeighbours(this);
+            if (DeselectOnUp)
+                contraption.ShowNeighbours(this);
         }
         else
         {
@@ -62,15 +78,35 @@ public class Part : LeanSelectable
         }
     }
 
-    public void ClearSelection()
+    private void Deselect()
     {
-        ChangeColor(originalColor);
+        ClearSelection();
+        if (contraption.GetSelectedPart() == this)
+        {
+            attrs.isSelected = true;
+            ApplyColor();
+        }
     }
 
-    public void ChangeColor(Color color)
+    public void ClearSelection()
     {
-        var spriteRenderer = GetComponent<SpriteRenderer>();
+        attrs.isNeighbour = false;
+        attrs.isSelected = false;
+        ApplyColor();
+    }
 
+    public void ApplyColor()
+    {
+        Color color;
+
+        if (attrs.isSelected)
+            color = Color.green;
+        else if (attrs.isNeighbour)
+            color = Color.blue;
+        else
+            color = originalColor;
+
+        var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = color;
     }
 }
