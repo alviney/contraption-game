@@ -31,22 +31,33 @@ public class Factory_PartOperations
     {
         switch (part.name)
         {
-            case "Box":
+            case "box":
                 AddHinge(part, attached);
                 break;
 
-            case "Ramp":
+            case "ramp":
                 AddHinge(part, attached);
                 break;
 
-            case "Wheel":
+            case "wheel":
                 AddWheel(part, attached);
                 break;
         }
     }
 
+    public void RemoveJoint(Part part)
+    {
+        Component[] joints = part.GetComponents(typeof(AnchoredJoint2D));
+
+        foreach (Component joint in joints)
+            MonoBehaviour.Destroy(joint);
+    }
+
     private void AddHinge(Part part, Part attached)
     {
+        if (attached.name == "wheel")
+            return;
+
         HingeJoint2D hinge = part.gameObject.AddComponent<HingeJoint2D>();
         hinge.connectedBody = attached.GetComponent<Rigidbody2D>();
         JointAngleLimits2D limits = hinge.limits;

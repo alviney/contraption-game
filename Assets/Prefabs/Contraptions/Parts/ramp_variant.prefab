@@ -89,7 +89,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7894576021886728697}
       propertyPath: name
-      value: Ramp
+      value: ramp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784725443274769387}
+      propertyPath: m_LocalPosition.x
+      value: 1.4381112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784725443274769387}
+      propertyPath: m_LocalPosition.y
+      value: -9.962198
       objectReference: {fileID: 0}
     - target: {fileID: 7784725443274769387}
       propertyPath: m_LocalPosition.x
@@ -169,7 +177,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7789570890451622657}
       propertyPath: m_Name
+      value: ramp_variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789570890451622657}
+      propertyPath: m_Name
       value: ramp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894576021886728697}
+      propertyPath: name
+      value: Ramp
       objectReference: {fileID: 0}
     - target: {fileID: 7894576021886728697}
       propertyPath: name
@@ -186,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 114443951270308564, guid: c88a979e6f5afb74f95312aa8a9f021e,
         type: 3}
       propertyPath: name
-      value: Ramp
+      value: ramp
       objectReference: {fileID: 0}
     - target: {fileID: 4885894576328902, guid: c88a979e6f5afb74f95312aa8a9f021e, type: 3}
       propertyPath: m_LocalPosition.x

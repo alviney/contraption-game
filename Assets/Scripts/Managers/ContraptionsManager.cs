@@ -46,6 +46,15 @@ public class ContraptionsManager : MonoBehaviour
         StopEdit();
     }
 
+    public void RebuildContraption()
+    {
+        currentContraption.RemoveJoints();
+
+        currentContraption.AddJoints();
+
+        StopEdit();
+    }
+
     public void StartEdit()
     {
         if (PartsManager.instance)

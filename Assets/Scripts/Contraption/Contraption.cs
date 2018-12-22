@@ -108,8 +108,15 @@ public class Contraption : MonoBehaviour
         foreach (Part part in parts)
         {
             List<Part> neighbours = nc.GetNeighbours(parts, part);
-            po.AddJoint(part, neighbours[0]);
+            foreach (Part neighbour in neighbours)
+                po.AddJoint(part, neighbour);
         }
+    }
+
+    public void RemoveJoints()
+    {
+        foreach (Part part in parts)
+            po.RemoveJoint(part);
     }
 
     public void ShowNeighbours(Part part)
