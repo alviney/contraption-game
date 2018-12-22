@@ -11,7 +11,7 @@ public class Contraption : MonoBehaviour
     public List<Part> parts;
     private Factory_PartOperations po;
     private NeighbourCheck nc;
-    private Part selectedPart;
+    public Part selectedPart;
 
     private void Awake()
     {
@@ -144,4 +144,8 @@ public class Contraption : MonoBehaviour
         }
     }
 
+    public bool IsReadyToBuild
+    {
+        get { return parts.Count > 0; }
+    }
 }
