@@ -33,6 +33,8 @@ public class CameraControl : MonoBehaviour
     public void ZoomOut()
     {
         camera.orthographicSize = zoomMax;
+
+        MoveToStartingPosition();
     }
 
     public void FocusOnCurrentContraption()

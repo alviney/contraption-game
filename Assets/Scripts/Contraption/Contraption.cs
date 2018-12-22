@@ -11,6 +11,7 @@ public class Contraption : MonoBehaviour
     public List<Part> parts;
     private Factory_PartOperations po;
     private NeighbourCheck nc;
+    private Part selectedPart;
 
     private void Awake()
     {
@@ -39,13 +40,13 @@ public class Contraption : MonoBehaviour
         part.SetContraption(this);
 
         part.transform.SetParent(transform);
+
+        ClearParts();
     }
 
     public void RemovePart(Part part)
     {
         parts.Remove(part);
-
-        PartsManager.instance.ClearSelectedParts();
 
         Destroy(part.gameObject);
     }
@@ -70,11 +71,24 @@ public class Contraption : MonoBehaviour
         GetComponent<LeanSelectable>().Deselect();
     }
 
+    public Part GetSelectedPart()
+    {
+        return selectedPart;
+    }
+
+    public void SetSelectedPart(Part part)
+    {
+        selectedPart = part;
+
+        selectedPart.attrs.isSelected = true;
+    }
+
     public void DisableParts()
     {
+        ClearParts();
+
         foreach (Part part in parts)
             part.DisablePart();
-
     }
 
     public void EnableParts()
@@ -89,22 +103,26 @@ public class Contraption : MonoBehaviour
             part.ClearSelection();
     }
 
-    public void CheckForNeighbours(Part part)
+    public void AddJoints()
     {
-        ClearParts();
+        foreach (Part part in parts)
+        {
+            List<Part> neighbours = nc.GetNeighbours(parts, part);
+            po.AddJoint(part, neighbours[0]);
+        }
+    }
 
+    public void ShowNeighbours(Part part)
+    {
         List<Part> neighbours = nc.GetNeighbours(parts, part);
 
         foreach (Part neighbour in neighbours)
         {
-            neighbour.ChangeColor(Color.blue);
+            neighbour.attrs.isNeighbour = true;
+            neighbour.ApplyColor();
         }
 
-        if (neighbours.Count > 0)
-        {
-            po.AddJoint(part, neighbours[0]);
-        }
-        else if (parts.Count != 1)
+        if (parts.Count != 1 && neighbours.Count < 1)
         {
             RemovePart(part);
         }

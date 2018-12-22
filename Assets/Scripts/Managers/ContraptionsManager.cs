@@ -27,7 +27,7 @@ public class ContraptionsManager : MonoBehaviour
 
     public void CreateContration()
     {
-        currentContraption = ContraptionBuilder.Create(contraptions.Count);
+        SetCurrentContraption(ContraptionBuilder.Create(contraptions.Count));
 
         StartEdit();
     }
@@ -40,6 +40,8 @@ public class ContraptionsManager : MonoBehaviour
     public void BuildContraption()
     {
         contraptions.Add(currentContraption);
+
+        currentContraption.AddJoints();
 
         StopEdit();
     }
@@ -66,7 +68,6 @@ public class ContraptionsManager : MonoBehaviour
             currentContraption.DisableParts();
         }
     }
-
     public void DeleteContraption()
     {
         contraptions.Remove(currentContraption);
@@ -85,6 +86,8 @@ public class ContraptionsManager : MonoBehaviour
     public void SetCurrentContraption(Contraption contraption)
     {
         currentContraption = contraption;
+
+        PartsManager.instance.SetCurrentContraption(contraption);
     }
 
     public void ToggleGravity()

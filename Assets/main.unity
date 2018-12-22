@@ -1185,7 +1185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &512678022
 Transform:
   m_ObjectHideFlags: 0
@@ -1209,13 +1209,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 512678021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7dc99ce51e599479fc327e22a8de27, type: 3}
+  m_Script: {fileID: 11500000, guid: ec0dd9a6eb6531647b93d8fa2436e936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IgnoreIfStartedOverGui: 1
   Prefab: {fileID: 22465266, guid: 54aa291ab24ad61478f4833d9c35f6f4, type: 3}
   Root: {fileID: 100264433}
   Camera: {fileID: 0}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
 --- !u!1 &540317880
 GameObject:
   m_ObjectHideFlags: 0
@@ -14617,7 +14620,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 704481680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 479d695282ba6cf4ba3ab3c4848f05e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f83827ec28a73b40835c871807d982a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SelectUsing: 1
@@ -17143,7 +17146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1777793978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d744fd6c45d03534aa12476772fa9be1, type: 3}
+  m_Script: {fileID: 11500000, guid: 675e9270413c47c48ad3ff46a8ae0a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   partPrefabs:
@@ -17153,7 +17156,6 @@ MonoBehaviour:
   partSpawnerPrefab: {fileID: 1467782985827910, guid: 261472eea00311e469f989e78d099b5a,
     type: 3}
   spawnersParent: {fileID: 316493174}
-  selectedParts: []
 --- !u!114 &1777793981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17163,7 +17165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1777793978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a99c25dcb8eabaf41afc854416ebd1a0, type: 3}
+  m_Script: {fileID: 11500000, guid: b8b9c792fd29f4945927246cc3b0d1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   contraptionPrefab: {fileID: 8492107891267923178, guid: e9c2557a76a8eea49ae17b6bd1252f63,

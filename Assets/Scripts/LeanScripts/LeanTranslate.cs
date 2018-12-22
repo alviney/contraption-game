@@ -37,6 +37,9 @@ namespace Lean.Touch
 
         protected virtual void Update()
         {
+            if (PartsManager.instance.GetIsDragging())
+                return;
+
             // Get the fingers we want to use
             var fingers = LeanSelectable.GetFingers(IgnoreStartedOverGui, IgnoreIsOverGui, RequiredFingerCount, RequiredSelectable);
 
