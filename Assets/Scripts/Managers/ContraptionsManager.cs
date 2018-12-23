@@ -12,6 +12,7 @@ public class ContraptionsManager : MonoBehaviour
     public Contraption currentContraption;
     private Factory_ContraptionBuilder ContraptionBuilder;
     private Factory_ContraptionOperations co;
+    private GameObject contraptionsCopy;
 
     private void Awake()
     {
@@ -126,9 +127,19 @@ public class ContraptionsManager : MonoBehaviour
         return currentContraption;
     }
 
-    public void ReleaseContraptions()
+    public void DestroyContraptionsCopy()
     {
-        foreach (Contraption contraption in contraptions)
-            contraption.gameObject.AddComponent<Rigidbody2D>();
+        Destroy(contraptionsCopy);
+
+        contraptionSpawn.gameObject.SetActive(true);
+    }
+
+    public void CopyContraptions()
+    {
+        contraptionsCopy = Instantiate(contraptionSpawn.gameObject);
+
+        contraptionsCopy.name = "contraptions";
+
+        contraptionSpawn.gameObject.SetActive(false);
     }
 }
