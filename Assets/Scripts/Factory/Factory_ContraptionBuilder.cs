@@ -13,9 +13,8 @@ public class Factory_ContraptionBuilder
     public Factory_ContraptionBuilder(GameObject contraptionPrefab, Transform transform)
     {
         this.contraptionPrefab = contraptionPrefab;
-        contraptionSpawn = new GameObject().transform;
-        contraptionSpawn.name = "Contraptions";
-        contraptionSpawn.SetParent(transform);
+
+        contraptionSpawn = transform;
     }
 
     public Contraption Create(int contraptionNumber)

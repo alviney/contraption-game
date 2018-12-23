@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Lean.Touch;
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
-	public int numOfContraptions;
-	// public ContraptionBuilder contraptionBuilder;
+    public int numOfContraptions;
 
-	public void Awake() {
-		// contraptionBuilder.Setup(numOfContraptions);
+    public void Awake()
+    {
+        Time.timeScale = 0f;
+    }
 
-		Time.timeScale = 0f;
-	}
+    public void Begin()
+    {
+        ContraptionsManager.instance.CopyContraptions();
 
-	public void Begin() {
-				
-		ReleaseContraptions();
-	}
+        ReleaseContraptions();
+    }
 
-	public void ReleaseContraptions() 
-	{
-		// contraptionBuilder.ReleaseContraptions();
+    public void Replay()
+    {
+        Time.timeScale = 0f;
 
-		Time.timeScale = 1f;
-	}
+        ContraptionsManager.instance.DestroyContraptionsCopy();
+    }
+
+    public void ReleaseContraptions()
+    {
+        Time.timeScale = 1f;
+    }
 }
